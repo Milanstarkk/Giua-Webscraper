@@ -28,6 +28,8 @@ import org.jsoup.select.Elements;
 
 import java.util.*;
 
+
+
 public class VotesPage implements IPage {
     private final GiuaScraper gS;
     private Document doc;
@@ -44,6 +46,23 @@ public class VotesPage implements IPage {
     public void refreshPage() {
         doc = gS.getPage(UrlPaths.VOTES_PAGE);
     }
+
+    /**
+     * Traduzione al nuovo sistema dei voti
+     */
+    private String translateVoteType(String tipo) {
+        switch (tipo) {
+            case "S":
+                return "Scritto";
+            case "O":
+                return "Orale";
+            case "P":
+                return "Pratico";
+        }
+        return tipo;
+    }
+
+
 
     /**
      * Ottiene tutti i voti di tutte le materie. I voti per materia sono già in ordine di pubblicazione,
@@ -68,7 +87,8 @@ public class VotesPage implements IPage {
                 for (int i = 0; i < length; i += 2) {
                     final String voteAsString = allVotesHTML.get(i).text(); //prende il voto
                     final String voteDate = getDetailOfVote(allVotesHTML.get(i + 1), 0);
-                    final String type = getDetailOfVote(allVotesHTML.get(i + 1), 1);
+                    final String rawType = getDetailOfVote(allVotesHTML.get(i + 1), 1);
+                    final String type = translateVoteType(rawType);
                     final String args = getDetailOfVote(allVotesHTML.get(i + 1), 2);
                     final String judg = getDetailOfVote(allVotesHTML.get(i + 1), 3);
                     final boolean isRelevantForMean = !subject.toLowerCase().contains("religione") && !(allVotesHTML.get(i).attributes().get("class").equals("btn btn-xs gs-btn-secondary"));
