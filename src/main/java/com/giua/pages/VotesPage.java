@@ -121,7 +121,7 @@ public class VotesPage implements IPage {
     /**
      * Ottiene tutti i voti di una materia specifica con una richiesta HTTP
      *
-     * @param filterSubject ATTENZIONE: il nome deve essere identico a quello del registro nella sezione voti
+     * @param filterSubject ATTENZIONE: Il nome deve essere identico a quello del registro nella sezione voti
      * @return Una {@code List} ordinata per quadrimestre contenente i voti di quel quadrimestre.
      * Per esempio per ottenere la {@code List} dei voti del secondo quadrimestre (se esiste): lista.get(1)
      */
