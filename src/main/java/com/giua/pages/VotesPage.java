@@ -81,7 +81,7 @@ public class VotesPage implements IPage {
         for (Element tbody : alltbody) { //divisione per quadrimestri
             for (final Element subjectVotesHTML : tbody.children()) {
                 final String subject = subjectVotesHTML.child(0).text();
-                final Elements allVotesHTML = subjectVotesHTML.child(1).children();
+                final Elements allVotesHTML = subjectVotesHTML.child(1).child(2).child(3).children();
 
                 int length = allVotesHTML.size();
                 for (int i = 0; i < length; i += 2) {
@@ -129,18 +129,12 @@ public class VotesPage implements IPage {
      * @return Stringa contenente i dettagli di quel voto
      */
     private String getDetailOfVote(Element e, int index) {
-        // Trova tutte le celle nella riga (composte dai dati dei voti)
-        Elements cells = e.children();
-
-        // Se index è 0, 1, o 2, si ottengono rispettivamente Materia, Voto, Tipo
-        if (index < cells.size()) {
-            String cellText = cells.get(index).text().trim();  // Prende il testo della cella selezionata
-            if (!cellText.isEmpty()) {
-                return cellText;
-            }
+        Elements allDetailsHTML = e.child(0).child(0).children();
+        if (index < allDetailsHTML.size()) {
+            String[] splitted = e.child(0).child(0).child(index).text().split(": ", 2);
+            if (splitted.length > 1)
+                return splitted[1];
         }
-
-        // Se non è stato trovato, restituisce una stringa vuota
         return "";
     }
 
