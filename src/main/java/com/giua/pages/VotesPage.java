@@ -81,7 +81,7 @@ public class VotesPage implements IPage {
         for (Element tbody : alltbody) { //divisione per quadrimestri
             for (final Element subjectVotesHTML : tbody.children()) {
                 final String subject = subjectVotesHTML.child(0).text();
-                final Elements allVotesHTML = subjectVotesHTML.child(1).child(2).child(3).children();
+                final Elements allVotesHTML = subjectVotesHTML.child(2).children();
 
                 int length = allVotesHTML.size();
                 for (int i = 0; i < length; i += 2) {
