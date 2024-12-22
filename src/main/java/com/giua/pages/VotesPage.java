@@ -129,12 +129,18 @@ public class VotesPage implements IPage {
      * @return Stringa contenente i dettagli di quel voto
      */
     private String getDetailOfVote(Element e, int index) {
-        Elements allDetailsHTML = e.child(0).child(0).children();
-        if (index < allDetailsHTML.size()) {
-            String[] splitted = e.child(0).child(0).child(index).text().split(": ", 2);
-            if (splitted.length > 1)
-                return splitted[1];
+        // Trova tutte le celle nella riga (composte dai dati dei voti)
+        Elements cells = e.children();
+
+        // Se index è 0, 1, o 2, si ottengono rispettivamente Materia, Voto, Tipo
+        if (index < cells.size()) {
+            String cellText = cells.get(index).text().trim();  // Prende il testo della cella selezionata
+            if (!cellText.isEmpty()) {
+                return cellText;
+            }
         }
+
+        // Se non è stato trovato, restituisce una stringa vuota
         return "";
     }
 
