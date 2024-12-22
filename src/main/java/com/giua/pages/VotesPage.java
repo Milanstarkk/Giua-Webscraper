@@ -109,13 +109,20 @@ public class VotesPage implements IPage {
      * @return Stringa contenente i dettagli di quel voto
      */
     private String getDetailOfVote(Element e, int index) {
-        Elements allDetailsHTML = e.child(0).child(0).children();
-        if (index < allDetailsHTML.size()) {
-            String[] splitted = e.child(0).child(0).child(index).text().split(": ", 2);
-            if (splitted.length > 1)
-                return splitted[1];
+        // Estrai il valore
+        String textContent = e.child(0).child(0).child(index).text().trim();
+
+        // Mappa i valori
+        switch (textContent) {
+            case "Scritto":
+                return "S";
+            case "Orale":
+                return "O";
+            case "Pratico":
+                return "P";
+            default:
+                return ""; // Valore sconosciuto
         }
-        return "";
     }
 
     /**
