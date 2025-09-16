@@ -45,7 +45,8 @@ public class AbsencesPage implements IPage {
     @Override
     public void refreshPage() {
         doc = gS.getPage(UrlPaths.ABSENCES_PAGE);
-        if(!gS.isDemoMode())
+        Element giustificazioni = doc.getElementById("gs-giustificazioni");
+        if(!gS.isDemoMode() && giustificazioni != null)
             tbodyGlobalSituation = doc.getElementById("gs-giustificazioni").previousElementSibling().child(1);
     }
 
