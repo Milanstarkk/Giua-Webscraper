@@ -56,10 +56,10 @@ public class AlertsPage implements IPage {
         try {
             doc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.ALERTS_PAGE)
-                    .data("bacheca_avvisi_genitori[visualizza]", "T")
-                    .data("bacheca_avvisi_genitori[oggetto]", "")
-                    .data("bacheca_avvisi_genitori[submit]", "")
-                    .data("bacheca_avvisi_genitori[_token]", getFilterToken())
+                    .data("avviso_filtro[visualizza]", "T")
+                    .data("avviso_filtro[oggetto]", "")
+                    .data("avviso_filtro[submit]", "")
+                    .data("avviso_filtro[_token]", getFilterToken())
                     .post();
         } catch (IOException e) {
             if (!GiuaScraper.isSiteWorking()) {
@@ -126,10 +126,10 @@ public class AlertsPage implements IPage {
         try {
             Document newDoc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.ALERTS_PAGE)
-                    .data("bacheca_avvisi_genitori[visualizza]", onlyNotRead ? "D" : "T")
-                    .data("bacheca_avvisi_genitori[oggetto]", text)
-                    .data("bacheca_avvisi_genitori[submit]", "")
-                    .data("bacheca_avvisi_genitori[_token]", getFilterToken())
+                    .data("avviso_filtro[visualizza]", onlyNotRead ? "D" : "T")
+                    .data("avviso_filtro[oggetto]", text)
+                    .data("avviso_filtro[submit]", "")
+                    .data("avviso_filtro[_token]", getFilterToken())
                     .post();
 
 
@@ -259,7 +259,7 @@ public class AlertsPage implements IPage {
     }
 
     private String getFilterToken() {
-        return doc.getElementById("bacheca_avvisi_genitori__token").attr("value");
+        return doc.getElementById("avviso_filtro__token").attr("value");
     }
 
     /**

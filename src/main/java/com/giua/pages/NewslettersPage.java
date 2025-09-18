@@ -54,11 +54,11 @@ public class NewslettersPage implements IPage{
         try {
             doc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.NEWSLETTERS_PAGE)
-                    .data("circolari_genitori[visualizza]", "P")
-                    .data("circolari_genitori[mese]", "")
-                    .data("circolari_genitori[oggetto]", "")
-                    .data("circolari_genitori[submit]", "")
-                    .data("circolari_genitori[_token]", getFilterToken())
+                    .data("circolare_filtro[visualizza]", "P")
+                    .data("circolari_filtro[mese]", "")
+                    .data("circolare_filtro[oggetto]", "")
+                    .data("circolare_filtro[submit]", "")
+                    .data("circolare_filtro[_token]", getFilterToken())
                     .post();
         } catch (IOException e) {
             if (!GiuaScraper.isSiteWorking()) {
@@ -90,7 +90,7 @@ public class NewslettersPage implements IPage{
     }
 
     private String getFilterToken() {
-        return doc.getElementById("circolari_genitori__token").attr("value");
+        return doc.getElementById("circolare_filtro__token").attr("value");
     }
 
     /**
@@ -160,11 +160,11 @@ public class NewslettersPage implements IPage{
 
             Document newDoc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.NEWSLETTERS_PAGE)
-                    .data("circolari_genitori[visualizza]", onlyNotRead ? "D" : "P")
-                    .data("circolari_genitori[mese]", date)
-                    .data("circolari_genitori[oggetto]", text)
-                    .data("circolari_genitori[submit]", "")
-                    .data("circolari_genitori[_token]", getFilterToken())
+                    .data("circolare_filtro[visualizza]", onlyNotRead ? "D" : "P")
+                    .data("circolare_filtro[mese]", date)
+                    .data("circolari_filtro[oggetto]", text)
+                    .data("circolare_filtro[submit]", "")
+                    .data("circolare_filtro[_token]", getFilterToken())
                     .post();
 
             Elements allNewslettersStatusHTML = newDoc.getElementsByClass("table table-bordered table-hover table-striped gs-mb-4").get(0).children().get(1).children();
