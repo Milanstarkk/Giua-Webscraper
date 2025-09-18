@@ -43,6 +43,7 @@ public class Alert {
     public final static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //es. 2021-10-22
 
     private int id = -1;
+    private Document doc;
 
     public Alert(String status, String date, String receivers, String object, String detailsUrl, int page) {
         this.status = status;
@@ -129,8 +130,7 @@ public class Alert {
     public int getId(){
         if(id != -1) return id;
 
-        String[] urlSplit = detailsUrl.split("/");
-        id = Integer.parseInt(urlSplit[urlSplit.length-1]);
+        id = Integer.parseInt(doc.getElementById("btn btn-xs btn-primary").attr("data-info-id"));
 
         return id;
     }
