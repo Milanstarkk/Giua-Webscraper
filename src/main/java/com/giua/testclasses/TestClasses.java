@@ -145,7 +145,7 @@ class TestClasses {
         logln("Marking first alert as read");
          gS.getAlertsPage(false).markAlertAsRead(allAvvisi.get(0));
          logln("Get first alert with filter");
-         logln(gS.getAlertsPage(false).getAllAlertsWithFilters(false, "g").get(0).toString());
+         logln(gS.getAlertsPage(false).getAllAlertsWithFilters(false, "", "f").get(0).toString());
          logln("Get details of first alert");
          allAvvisi.get(0).getDetailsToString(gS);
          logln(allAvvisi.get(0).toString());

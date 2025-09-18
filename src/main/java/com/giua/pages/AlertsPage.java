@@ -57,6 +57,7 @@ public class AlertsPage implements IPage {
             doc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.ALERTS_PAGE)
                     .data("avviso_filtro[visualizza]", "T")
+                    .data("avviso_filtro[mese]", "")
                     .data("avviso_filtro[oggetto]", "")
                     .data("avviso_filtro[submit]", "")
                     .data("avviso_filtro[_token]", getFilterToken())
@@ -117,7 +118,7 @@ public class AlertsPage implements IPage {
      * @return Lista di Alert
      * @throws IndexOutOfBoundsException Se {@code page} è minore o uguale a 0.
      */
-    public List<Alert> getAllAlertsWithFilters(boolean onlyNotRead, String text) throws IndexOutOfBoundsException {
+    public List<Alert> getAllAlertsWithFilters(boolean onlyNotRead, String date, String text) throws IndexOutOfBoundsException {
         if (gS.isDemoMode()) {
             return GiuaScraperDemo.getAllAlerts();
         }
@@ -127,6 +128,7 @@ public class AlertsPage implements IPage {
             Document newDoc = gS.getSession().newRequest()
                     .url(gS.getSiteUrl() + "/" + UrlPaths.ALERTS_PAGE)
                     .data("avviso_filtro[visualizza]", onlyNotRead ? "D" : "T")
+                    .data("avviso_filtro[mese]", date)
                     .data("avviso_filtro[oggetto]", text)
                     .data("avviso_filtro[submit]", "")
                     .data("avviso_filtro[_token]", getFilterToken())
@@ -243,7 +245,7 @@ public class AlertsPage implements IPage {
      * @return Una lista di avvisi nuovi da notificare
      */
     public List<Alert> getAlertsToNotify(List<Alert> oldAlerts) {
-        List<Alert> newAlerts = getAllAlertsWithFilters(false, "per la materia");
+        List<Alert> newAlerts = getAllAlertsWithFilters(false, "", "per la materia");
         List<Alert> returnDifference = new Vector<>(newAlerts);
         if (oldAlerts.size() == 0)
             return newAlerts;   //Ritorno newAlerts perché è la loro differenza
