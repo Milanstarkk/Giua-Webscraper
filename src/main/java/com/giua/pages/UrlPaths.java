@@ -31,8 +31,8 @@ public class UrlPaths {
     public static String AUTHORIZATIONS_PAGE = "genitori/deroghe/";
     public static String REPORTCARD_PAGE = "genitori/pagelle";
     public static String INTERVIEWS_PAGE = "colloqui/genitori";
-    public static String NEWSLETTERS_PAGE = "circolari/genitori";
-    public static String ALERTS_PAGE = "genitori/avvisi";
+    public static String NEWSLETTERS_PAGE = "circolari/bacheca";
+    public static String ALERTS_PAGE = "avvisi/bacheca";
     public static String DOCUMENTS_PAGE = "documenti/bacheca";
     public static String PINBOARD_PAGE = "genitori/eventi";
     public static String PROFILE_PAGE = "utenti/profilo";

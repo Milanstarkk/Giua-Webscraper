@@ -124,9 +124,6 @@ public class AbsencesPage implements IPage {
      * @return Una lista di Absence
      */
     public List<Absence> getAllAbsences() {
-        if (gS.isDemoMode()) {
-            return GiuaScraperDemo.getAllAbsences();
-        }
         List<Absence> allAbsences = new Vector<>();
 
         Elements allAbsencesTBodyHTML = doc.getElementsByClass("table table-bordered table-hover table-striped");
